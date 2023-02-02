@@ -1,5 +1,4 @@
-use std::io;
-
+#[derive(Debug)]
 struct Album {
     name: String,
     artist: String,
@@ -9,55 +8,21 @@ struct Album {
 }
 
 fn main() {
-    create_album();
+    let name = String::from("Mr. Morale And The Big Steppers");
+    let artist = String::from("Kendrick Lamar");
+    let genre = String::from("Rap/Hiphop");
+    let release_year = 2022;
+    let price = 10.55;
+    println!("{:#?}", create_album(name, artist, genre, release_year, price));
 }
 
-fn create_album() {
-    println!("Enter Album name:\n");
-    let mut name = String::new();
-    io::stdin()
-        .read_line(&mut name)
-        .expect("Dang! Failed to read input");
-
-    println!("Enter Artist name:\n");
-
-    let mut artist = String::new();
-    io::stdin()
-        .read_line(&mut artist)
-        .expect("Dang! Failed to read input");
-
-    println!("Enter music genre:\n");
-
-    let mut genre = String::new();
-    io::stdin()
-        .read_line(&mut genre)
-        .expect("Dang! Failed to read input");
-
-    println!("Enter Release Year:\n");
-
-    let mut release_year = String::new();
-    io::stdin()
-        .read_line(&mut release_year)
-        .expect("Dang! Failed to read input");
-    let year: i32 = release_year.parse().unwrap();
-
-    println!("Enter price:\n");
-
-    let mut price = String::new();
-    io::stdin()
-        .read_line(&mut price)
-        .expect("Dang! Failed to read input");
-    let price_val: f64 = price.parse().unwrap();
-
-    let album = Album {
-        name: name,
-        artist: artist,
-        genre: genre,
-        release_year: year,
-        price: price_val,
+fn create_album(album_name: String, album_artist: String, album_genre: String, album_release_year: i32, album_price: f64) -> Album {
+    let new_album = Album {
+        name: album_name,
+        artist: album_artist,
+        genre: album_genre,
+        release_year: album_release_year,
+        price: album_price,
     };
-    println!(
-        "Album name: {}\n Artist: {}\n Genre: {}\n Release Year: {}\n Price: {}\n",
-        album.name, album.artist, album.genre, album.release_year, album.price
-    );
+    new_album
 }
